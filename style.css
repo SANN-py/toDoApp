@@ -266,10 +266,14 @@ footer{
     color: var(--danger);
 }
 
-@media (min-width: 600px) {
+@media (max-width: 600px) {
   .todo-input button {
     width: 50px; /* Increase width for better tapping */
     height: 50px; /* Increase height for better tapping */
   
+  }
+
+  body{
+    padding: 6px;
   }
 }
