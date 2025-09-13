@@ -6,6 +6,7 @@ const clearCompletedBtn = document.getElementById("clear-completed");
 const emptyState = document.querySelector(".empty-state");
 const dateElement = document.getElementById("date");
 const filters = document.querySelectorAll(".filter");
+const emptyStateText = document.querySelector(".empty-state p");
 
 let todos = [];
 let currentFilter = "all";
@@ -50,8 +51,22 @@ function updateItemsCount() {
 }
 function checkEmptyState() {
   const filteredTodos = filterTodos(currentFilter);
-  if (filteredTodos?.length === 0) emptyState.classList.remove("hidden");
-  else emptyState.classList.add("hidden");
+  if (filteredTodos?.length === 0) {
+    emptyState.classList.remove("hidden");
+    switch (currentFilter) {
+      case "active":
+        emptyStateText.textContent = "គ្មាន​ការងារ​ដែល​ត្រូវ​ធ្វើ​ទេ!";
+        break;
+      case "completed":
+        emptyStateText.textContent = "មិនមានភារកិច្ចដែលបានបញ្ចប់ទេ!";
+        break;
+      default:
+        emptyStateText.textContent = "មិនមានភារកិច្ចទេ !!";
+        break;
+    }
+  } else {
+    emptyState.classList.add("hidden");
+  }
 }
 
 function filterTodos(filter) {
@@ -173,3 +188,4 @@ window.addEventListener("DOMContentLoaded", () => {
   setDate();
   checkEmptyState();
 });
+
